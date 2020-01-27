@@ -1,0 +1,54 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: "14"
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu/bionic64
+
+suites:
+  - name: webserver-1
+    driver:
+      network:
+        - ["forwarded_port", {guest: 80, host: 8081}]
+        - ["private_network", {ip: "192.168.50.11"}]
+    verifier:
+      name: inspec
+    run_list:
+      - recipe[al_hello_world::webserver]
+    attributes:
+      al_hello_world:
+        web_port: 80
+
+  - name: webserver-2
+    driver:
+      network:
+        - ["forwarded_port", {guest: 80, host: 8082}]
+        - ["private_network", {ip: "192.168.50.12"}]
+    verifier:
+      name: inspec
+    run_list:
+      - recipe[al_hello_world::webserver]
+    attributes:
+      al_hello_world:
+        web_port: 80
+
+  - name: loadbalancer
+    driver:
+      network:
+        - ["forwarded_port", {guest: 80, host: 80}]
+        - ["private_network", {ip: "192.168.50.20"}]
+    verifier:
+      name: inspec
+    run_list:
+      - recipe[al_hello_world::loadbalancer]
+    attributes:
+      al_hello_world:
+        lb_port: 80
+        web_port: 80

@@ -1,0 +1,18 @@
+events {
+  worker_connections 768;
+  # multi_accept on;
+}
+
+http {
+  upstream hello {
+    server 192.168.50.11:<%= node['al_hello_world']['web_port'] %>;
+    server 192.168.50.12:<%= node['al_hello_world']['web_port'] %>;
+  }
+
+  server {
+    listen 80;
+    location / {
+      proxy_pass http://hello;
+    }
+  }
+}

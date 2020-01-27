@@ -1,0 +1,7 @@
+name 'al_hello_world'
+maintainer 'James Nduka'
+maintainer_email 'james.s.nduka@synwin.co.uk'
+license 'all_rights'
+description 'Installs/Configures AL hello world Loadbalancer'
+long_description 'Installs/Configures AL hello world Loadbalancer'
+version '0.1.0'
