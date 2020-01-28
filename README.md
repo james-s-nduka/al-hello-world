@@ -10,10 +10,10 @@ Configuration of the Hello World app for Load-Balanced Round Robin Demonstration
 
 1. Run `vagrant up` in a shell whilst in the root of this folder
 2. Enter http://localhost on your browser
-3. Hit referesh to witness round-robin loadbalancing on the web servers
+3. Hit referesh to witness round-robin loadbalancing across the web servers
 
 ## Testing
-This project uses *Test Kitchen* as the framework for Test-Driven-Development. You can find the Inspec tests in `./cookbooks/al_hello_world/test` directory. In order to run from within the cookbook "al_hello_world";
+This project uses *Test Kitchen* as the framework for Test-Driven-Development. You can find the Inspec tests in `./cookbooks/al_hello_world/test` directory. In order to run these you must be inside the directory of the cookbook "al_hello_world";
 
 
 1. Run `kitchen verify <TEST SUITE>`
